@@ -9,3 +9,7 @@
 - Realizar un cambio a elección en alguna vista, probar en forma local y subir nuevamente el proyecto a
 - Heroku, verificando que la nueva reforma esté disponible online.
 - Revisar a través de una consola local, los mensajes enviados por nuestro servidor en Heroku a su propia consola.
+
+## Resolucion
+
+[Mi proyecto en la nuve](https://proyecto-en-la-nube-francisco.herokuapp.com/api/login)
