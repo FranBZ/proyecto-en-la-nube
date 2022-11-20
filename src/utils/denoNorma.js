@@ -1,4 +1,5 @@
-import { normalize, denormalize, schema } from 'normalizr'
+// import { normalize, denormalize, schema } from 'normalizr'
+const { normalize, denormalize, schema } = require('normalizr')
 
 /*+++++++++++++++++++++++++++++++++++
 +  NORMALIZACION Y DENORMALIZACION  +
@@ -31,7 +32,7 @@ const denormalizeData = (data) => {
 +  EXPORTAMOS LAS FUNCIONES  +
 +++++++++++++++++++++++++++++*/
 
-export {
+module.exports = {
     normalizeData,
     denormalizeData
 }

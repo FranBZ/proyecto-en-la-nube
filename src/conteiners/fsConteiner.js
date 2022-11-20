@@ -1,13 +1,18 @@
-import { dbsConfig } from '../config/dbsConnect.js'
+/* import { dbsConfig } from '../config/dbsConnect.js'
 import fs from 'fs'
 import { v4 as newID } from 'uuid'
-import { normalizeData, denormalizeData } from '../utils/denoNorma.js'
+import { normalizeData, denormalizeData } from '../utils/denoNorma.js' */
+
+const { dbsConfig } = require('../config/dbsConnect.js')
+const fs = require('fs')
+const { v4 : newID } = require('uuid')
+const { normalizeData, denormalizeData } = require('../utils/denoNorma.js')
 
 /*+++++++++++++++++++++++++++++++++++++++++++
 + FILE SYSTEM CONTEINER - CONECCION A LA DB +
 ++++++++++++++++++++++++++++++++++++++++++++*/
 
-export class FsConteiner {
+class FsConteiner {
     constructor() {
         this.pathFile = dbsConfig.fileSystem.pathChat
     }
@@ -38,3 +43,5 @@ export class FsConteiner {
         }
     }
 }
+
+module.exports = FsConteiner

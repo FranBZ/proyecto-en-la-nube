@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose"
+// import { Schema, model } from "mongoose"
+const { Schema, model } = require('mongoose')
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 + CONFIGURACION DEL MODELO NECESARIO PARA PERCISTENCIA DE CHAT EN MONGODB +
@@ -42,4 +43,4 @@ const chatSchema = Schema({
     versionKey: false
 })
 
-export const Chat = model(chatCollection, chatSchema)
+exports.Chat = model(chatCollection, chatSchema)

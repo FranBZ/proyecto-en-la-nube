@@ -1,15 +1,20 @@
-import mongoose from 'mongoose'
+/* import mongoose from 'mongoose'
 import { dbsConfig } from '../config/dbsConnect.js'
 import { Chat } from '../models/Chat.js'
-import { normalizeData } from '../utils/denoNorma.js'
+import { normalizeData } from '../utils/denoNorma.js' */
+
+const mongoose = require('mongoose')
+const { dbsConfig } = require('../config/dbsConnect.js')
+const { Chat } = require('../models/Chat.js')
+const { normalizeData } = require('../utils/denoNorma.js')
 
 /*+++++++++++++++++++++++++++++++++++++
 + MONGO CONTEINER - CONECCION A LA DB +
 ++++++++++++++++++++++++++++++++++++++*/
 
-await mongoose.connect(dbsConfig.mongodbAtlas.uri, dbsConfig.mongodbAtlas.options)
+mongoose.connect(dbsConfig.mongodbAtlas.uri, dbsConfig.mongodbAtlas.options)
 
-export class MongoConteiner {
+class MongoConteiner {
     constructor() {
         this.collection = Chat
     }
@@ -32,7 +37,7 @@ export class MongoConteiner {
             const { id, nombre, apellido, edad, alias, avatar } = obj.author
             if (!id || !nombre || !apellido || !edad || !alias || !avatar || !obj.text) {
                 throw new Error(`Error al guardar, se deben ingresar todos los datos`)
-            } 
+            }
             const info = await this.collection.create(obj)
             return info
         } catch (error) {
@@ -40,3 +45,5 @@ export class MongoConteiner {
         }
     }
 }
+
+module.exports = MongoConteiner

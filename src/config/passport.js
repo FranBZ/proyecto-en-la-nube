@@ -1,12 +1,16 @@
-import passport from "passport"
+/* import passport from "passport"
 import { Strategy as LocalStrategy } from "passport-local"
 
-import { User } from "../models/User.js"
+import { User } from "../models/User.js" */
+
+const passport = require('passport')
+const { Strategy: LocalStrategy } = require('passport-local')
+const { User } = require('../models/User.js')
 
 // Estrategia local
 passport.use(new LocalStrategy({
-        usernameField: "email",
-    },
+    usernameField: "email",
+},
     async (email, password, done) => {
         const user = await User.findOne({ email: email })
         if (!user) {

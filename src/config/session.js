@@ -1,17 +1,23 @@
-import session from "express-session"
+/* import session from "express-session"
 import MongoStore from 'connect-mongo'
-import { dbsConfig } from './dbsConnect.js'
+import { dbsConfig } from './dbsConnect.js' */
 
-export default session({
-    store: MongoStore.create({ 
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
+const { dbsConfig } = require('./dbsConnect.js')
+
+session({
+    store: MongoStore.create({
         mongoUrl: dbsConfig.mongodbAtlas.uri,
         mongoOptions: dbsConfig.mongodbAtlas.options
     }),
     secret: 'mongoSecret',
-    resave: false ,
+    resave: false,
     saveUninitialized: false,
     rolling: true,
     cookie: {
         maxAge: 600000
     }
 })
+
+module.exports = session

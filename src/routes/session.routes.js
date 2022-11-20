@@ -1,5 +1,8 @@
-import { Router } from 'express'
-import { logout, signin, signup, auth, sessionController } from '../controllers/user.controller.js'
+/* import { Router } from 'express'
+import { logout, signin, signup, auth, sessionController } from '../controllers/user.controller.js' */
+
+const { Router } = require('express')
+const { logout, signin, signup, auth, sessionController } = require('../controllers/user.controller.js')
 
 /*+++++++++++
 + ENRUTADOR +
@@ -22,4 +25,4 @@ routerSession.post('/login', signin)
 // Logout
 routerSession.get('/logout', logout)
 
-export default routerSession
+module.exports = routerSession

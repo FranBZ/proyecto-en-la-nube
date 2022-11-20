@@ -2,7 +2,7 @@
 + INICIO DE LA APP +
 +++++++++++++++++++*/
 
-import { app, http } from './app.js'
+const { app, http } = require('./app.js')
 
 const connectedServer = http.listen(app.get('port'), () => {
     console.log("Servidor conectado, escuchando en " + app.get('port'))

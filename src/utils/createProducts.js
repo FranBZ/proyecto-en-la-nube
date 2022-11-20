@@ -1,10 +1,11 @@
-import { faker } from '@faker-js/faker/locale/es'
+// import { faker } from '@faker-js/faker/locale/es'
+const { faker } = require('@faker-js/faker/locale/es')
 
 /*++++++++++++++++++++++++++ 
 +  CREAR PRODUCTOS RANDOM  +
 +++++++++++++++++++++++++++*/
 
-export const createProducts = () => {
+const createProducts = () => {
     let arr = []
     for (let i = 0; i < 5; i++) {
         arr.push({
@@ -13,5 +14,7 @@ export const createProducts = () => {
             foto: faker.internet.avatar()
         })
     }
-    return(arr)
+    return (arr)
 }
+
+module.exports = { createProducts }

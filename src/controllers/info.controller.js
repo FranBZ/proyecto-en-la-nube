@@ -1,4 +1,4 @@
-export const infoController = (req, res) => {
+const infoController = (req, res) => {
     const info = {
         "Argumentos de entrada": process.argv,
         "Nombre de la plataforma": process.platform, 
@@ -10,3 +10,5 @@ export const infoController = (req, res) => {
     }
     res.render('info', {info})
 }
+
+module.exports = { infoController }

@@ -1,6 +1,10 @@
-import admin from "firebase-admin"
+/* import admin from "firebase-admin"
 import { dbsConfig } from '../config/dbsConnect.js'
-import { normalizeData } from '../utils/denoNorma.js'
+import { normalizeData } from '../utils/denoNorma.js' */
+
+const admin = require('firebase-admin')
+const dbsConfig = require('../config/dbsConnect.js')
+const { normalizeData } = require('../utils/denoNorma.js')
 
 /*++++++++++++++++++++++++++++++++++++++++
 + FIREBASE CONTEINER - CONECCION A LA DB +
@@ -12,13 +16,13 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-export class FirebaseConteiner {
+class FirebaseConteiner {
 
     constructor() {
         this.collection = db.collection('chat')
     }
 
-    async getAll () {
+    async getAll() {
         try {
             const result = []
             const snapshot = await this.collection.get();
@@ -31,7 +35,7 @@ export class FirebaseConteiner {
         }
     }
 
-    async save (obj) {
+    async save(obj) {
         try {
             const saved = await this.collection.add(obj);
             return { ...obj, id: saved.id }
@@ -40,3 +44,5 @@ export class FirebaseConteiner {
         }
     }
 }
+
+module.exports = FirebaseConteiner

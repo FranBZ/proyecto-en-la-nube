@@ -1,6 +1,9 @@
-import { config } from 'dotenv'
+/* import { config } from 'dotenv'
 import path from 'path'
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'url' */
+
+const { config } = require('dotenv')
+const path = require('path')
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 + CONFIGURACION DE CONECCION A LAS DIFERENTES BASE DE DATOS +
@@ -8,16 +11,16 @@ import { fileURLToPath } from 'url'
 
 config()
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+/* const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename) */
 
-const { MONGO_USER, 
-        MONGO_PASS,
-        MONGO_ATLAS_ENDPOINT, 
-        GOOGLE_APLICATION_CREDENTIALS 
-    } = process.env
+const { MONGO_USER,
+    MONGO_PASS,
+    MONGO_ATLAS_ENDPOINT,
+    GOOGLE_APLICATION_CREDENTIALS
+} = process.env
 
-export const dbsConfig = {
+const dbsConfig = {
 
     fileSystem: {
         pathChat: path.join(__dirname, 'chat.txt'),
@@ -31,3 +34,5 @@ export const dbsConfig = {
     },
     firebase: GOOGLE_APLICATION_CREDENTIALS
 }
+
+module.exports = { dbsConfig }

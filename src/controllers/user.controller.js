@@ -1,10 +1,15 @@
-import { createProducts } from '../utils/createProducts.js'
+/* import { createProducts } from '../utils/createProducts.js'
 import { User } from "../models/User.js"
 import passport from "passport"
-import '../config/passport.js'
+import '../config/passport.js' */
+
+const { createProducts } = require('../utils/createProducts.js')
+const { User } = require('../models/User.js')
+const passport = require('passport')
+require('../config/passport.js')
 
 // registrando usuario
-export const signup = async (req, res) => {
+const signup = async (req, res) => {
     const { email, password } = req.body
 
     // Comprobando que no existen el mail
@@ -21,13 +26,13 @@ export const signup = async (req, res) => {
 };
 
 // Logueando usuario
-export const signin = passport.authenticate('local', {
+const signin = passport.authenticate('local', {
     successRedirect: "/api/productos-test",
     failureRedirect: "/api/error-login",
 })
 
 // deslogueando usuario
-export const logout = async (req, res, next) => {
+const logout = async (req, res, next) => {
     let idSession = await req.session.passport.user
     let userInfo = await User.findOne({ '_id': idSession })
     let email = userInfo.email
@@ -38,7 +43,7 @@ export const logout = async (req, res, next) => {
 }
 
 // comprobando autenticaicon
-export const auth = (req, res, next) => {
+const auth = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
     } else {
@@ -47,9 +52,17 @@ export const auth = (req, res, next) => {
 }
 
 // Funcion para obtener info del usuario
-export const sessionController = async (req, res) => {
+const sessionController = async (req, res) => {
     let infoProducts = createProducts()
     let idSession = await req.session.passport.user
     let userInfo = await User.findOne({ '_id': idSession })
-    res.render('prodTable', { infoProducts, email : userInfo.email})
+    res.render('prodTable', { infoProducts, email: userInfo.email })
+}
+
+module.exports = {
+    signup,
+    signin,
+    logout,
+    auth,
+    sessionController
 }

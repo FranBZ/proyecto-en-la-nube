@@ -1,5 +1,8 @@
-import { Schema, model } from "mongoose"
-import bcrypt from "bcrypt"
+/* import { Schema, model } from "mongoose"
+import bcrypt from "bcrypt" */
+
+const { Schema, model } = require('mongoose')
+const bcrypt = require('bcrypt')
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 + CONFIGURACION DEL MODELO NECESARIO PARA PERCISTENCIA DE USUARIOS EN MONGODB +
@@ -30,4 +33,4 @@ userSchema.methods.matchPassword = async function (password) {
     return await bcrypt.compare(password, this.password)
 }
 
-export const User = model(usersCollection, userSchema)
+exports.User = model(usersCollection, userSchema)

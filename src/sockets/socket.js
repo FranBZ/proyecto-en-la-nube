@@ -1,15 +1,19 @@
-import dbChat from "./socketSelect.js"
-import { denormalizeData } from "../utils/denoNorma.js"
+/* import dbChat from "./socketSelect.js"
+import { denormalizeData } from "../utils/denoNorma.js" */
+
+const { dbChat } = require("./socketSelect.js")
+const { denormalizeData } = require("../utils/denoNorma.js")
 
 /*++++++++++++++++++++++++++++++++++++++
 + COMUNICACION DEL SOCKET DEL SERVIDOR +
 +++++++++++++++++++++++++++++++++++++++*/
 
-export default async (io) => {
+
+const socket = async (io) => {
     io.on('connection', async socket => {
 
         let chatINFO = await dbChat.getAll()
-        
+
         socket.emit('servidor_todos_los_mensajes', denormalizeData(chatINFO))
 
         socket.on('cliente_nuevo_mensaje_chat', async data => {
@@ -19,3 +23,5 @@ export default async (io) => {
         })
     })
 }
+
+module.exports = { socket }
